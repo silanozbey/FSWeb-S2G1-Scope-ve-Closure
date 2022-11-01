@@ -16,7 +16,9 @@
 */
 
 function ilkiniDon(stringArray, callback) {
+  
   return callback(stringArray[0])
+  
 }
 console.log('örnek görev:', ilkiniDon(['as','sa'],function(metin){return metin+metin}));
 
@@ -64,11 +66,11 @@ Aşağıdaki takimSkoru() fonksiyonununda aşağıdakileri yapınız:
 Not: Bu fonskiyon, aşağıdaki diğer görevler için de bir callback fonksiyonu olarak da kullanılacak
 */
 
-function takimSkoru(/*Kodunuzu buraya yazınız*/){
-    /*Kodunuzu buraya yazınız*/
+function takimSkoru(){
+    let num1=Math.floor(Math.random()*16+10);
+    return num1;
 }
-
-
+console.log(takimSkoru(10,25));
 
 
 /* Görev 3: macSonucu() 
@@ -86,11 +88,23 @@ Aşağıdaki macSonucu() fonksiyonununda aşağıdakileri yapınız:
 }
 */ 
 
-function macSonucu(/*Kodunuzu buraya yazınız*/){
-  /*Kodunuzu buraya yazınız*/
+function macSonucu(callback,ceyrekSayisi){
+  let evSahibi=0;
+  let konukTakim=0;
+
+  for (let i=1; i<=ceyrekSayisi; i++){
+    evSahibi += callback();
+    konukTakim += callback();
+  }
+
+  let skor={};
+  skor.EvSahibi=evSahibi;
+  skor.KonukTakim=konukTakim;
+
+  return skor;
 }
 
-
+console.log(macSonucu(takimSkoru,4));
 
 
 
@@ -109,11 +123,14 @@ Aşağıdaki periyotSkoru() fonksiyonununda aşağıdakileri yapınız:
   */
 
 
-function periyotSkoru(/*Kodunuzu buraya yazınız*/) {
-  /*Kodunuzu buraya yazınız*/
+function periyotSkoru(callback) {
+  const obje={};
+  obje.EvSahibi += callback();
+  obje.KonukTakim += callback();
+  return obje;
 
 }
-
+console.log(periyotSkoru(takimSkoru))
 
 /* Zorlayıcı Görev 5: skorTabelasi() 
 Aşağıdaki skorTabelasi() fonksiyonunu kullanarak aşağıdakileri yapınız:
@@ -154,13 +171,13 @@ function skorTabelasi(/*Kodunuzu buraya yazınız*/) {
 
 
 /* Aşağıdaki satırları lütfen değiştirmeyiniz*/
-function as(){
+function sa(){
   console.log('Kodlar çalışıyor');
-  return 'sa';
+  return 'as';
 }
-as();
+sa();
 module.exports = {
-  as,
+  sa,
   ilkiniDon,
   skor1,
   skor2,
